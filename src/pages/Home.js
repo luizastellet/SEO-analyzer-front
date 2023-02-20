@@ -5,14 +5,14 @@ import styles from '../assets/Home.module.css'
 import Search from '../assets/images/SearchIcon'
 
 const Home = () => {
-  const endpoint = 'http://localhost:8000/page/'
+  const endpoint = 'http://localhost:8000/url/'
   const [URL, setURL] = useState({})
   const navigate = useNavigate()
 
   function submit(s) {
     s.preventDefault();
     Axios.post(endpoint, {
-      "url": URL
+      "url": URL.url
     })
     .then(() => {
       navigate("/resultado")
