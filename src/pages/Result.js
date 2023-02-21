@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import BackgroundImg from '../assets/images/BackgroundImage.jpg'
 import Card from './Card'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-const URL =  'www.google.com.br/nsdansdkjansdjnaskjdnajsdaskjnjansdjnaskjdnajsdaskjndaksn'
+const endpoint = 'http://localhost:8000/page' 
 
 const Background = styled.div`
   width: 100%;
@@ -113,6 +115,13 @@ const URLWrapper = styled.div`
 
 const Result = () => {
   const navigate = useNavigate()
+  const [URL, setURL] = useState("")
+
+  useEffect(() => {
+    axios.get(endpoint)
+    .then(res => console.log(res))
+  }, [])
+
 
     return(
       <Background>
