@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import BackgroundImg from '../assets/images/BackgroundImage.jpg'
-import Card from './Card'
+import Title from '../components/Title'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const endpoint = 'http://localhost:8000/page' 
+const endpoint = 'http://localhost:8000/' 
 
 const Background = styled.div`
   width: 100%;
-  background-color: #EFEFEF;
+  background-color: #EBEBEB;
   display: flex;
   justify-content: center;
   overflow-y: visible;
@@ -23,7 +23,7 @@ const BGImage = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 0 2000px #0f172a99;
-  border-bottom-left-radius: 80px;
+  /* border-bottom-left-radius: 80px; */
 
   @media screen and (max-width: 630px){
     border-radius: 0;
@@ -37,7 +37,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-bottom: 50px ;
+  margin-bottom: 50px;
+  background-color: #fff;
+  height: 100vh;
 
   @media screen and (max-width: 630px){
     width: 90%;
@@ -112,18 +114,27 @@ const URLWrapper = styled.div`
   }
 }
 `
+const Components = styled.div`
+  width: 100%;
+  padding: 16px;
+`
 
 const Result = () => {
   const navigate = useNavigate()
   const [URL, setURL] = useState("")
+  const [data, setData] = useState({})
 
   useEffect(() => {
-    axios.get(endpoint)
-    .then(res => console.log(res))
+    axios.get(`${endpoint}page`)
+    .then(res => setData(res.data))
   }, [])
 
+  useEffect(() => {
+    axios.get(`${endpoint}url`)
+    .then(res => setURL(res.data.value))
+  }, [])
 
-    return(
+    return( 
       <Background>
         <BGImage /> 
         <Container> 
@@ -134,11 +145,11 @@ const Result = () => {
             </TopWrapper>
             <URLWrapper>  Exibindo resultados para: <a href={URL}> {URL}</a></URLWrapper>
           </Header>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {!!data && (
+            <Components>
+              <Title data={data.title}/> 
+            </Components>
+          )}
         </Container>
       </Background>
     )
