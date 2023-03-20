@@ -19,6 +19,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+p {
+  color: #4A4A4A;
+}
+
 h1 {
   color: #FFF;
   font-weight: 600;

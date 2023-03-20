@@ -16,7 +16,7 @@ import { DataIcon } from '../components/Icons'
 
 const Title = ({data}) => {
   return (
-    <>
+    <div>
       <TitleWrapper>Título</TitleWrapper>
       <ContentContainer>
       <DefinitionContainer>
@@ -35,7 +35,7 @@ const Title = ({data}) => {
          </InfoContainer>
        ))}
       </ContentContainer>
-    </>
+    </div>
   )
 }
 
