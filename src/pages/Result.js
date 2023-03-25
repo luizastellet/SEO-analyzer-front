@@ -14,7 +14,7 @@ const Result = ({ title, headings }) => {
   return (
     <Container>
       <Title data={title} />
-      <Headings data={headings} />
+      <Headings {...headings} />
     </Container>
   )
 }

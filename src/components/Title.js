@@ -11,9 +11,6 @@ import {
 import { handleIconInformation } from '../utils/InformationContainerHandler'
 import { DataIcon } from '../components/Icons'
 
-
-
-
 const Title = ({data}) => {
   return (
     <div>

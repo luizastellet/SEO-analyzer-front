@@ -39,7 +39,6 @@ const Container = styled.div`
   gap: 30px;
   margin-bottom: 50px;
   background-color: #fff;
-  height: 100vh;
 
   @media screen and (max-width: 630px){
     width: 90%;
