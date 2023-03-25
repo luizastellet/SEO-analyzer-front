@@ -87,6 +87,39 @@ const ContentCell = styled.td`
   text-align: justify;
   margin-bottom: 10px;
 `
+const H1 = ({ tag, content, errorName }) => {
+
+  if (!content) {
+    return (
+      <ContentRow>
+        <TagCell>
+          <Content>{tag}</Content>
+        </TagCell>
+        <ContentCell>
+          <InfoWrapper style={{ margin: '10px' }} type='error'>{handleIconInformation('error')}{errorName}</InfoWrapper>
+        </ContentCell>
+      </ContentRow >
+    )
+  }
+
+  return (
+    content.map((item, idx) => (
+      <ContentRow>
+        <TagCell>
+          <Content>{idx === 0 ? tag : ''}</Content>
+        </TagCell>
+        <ContentCell>
+          <InfoWrapper style={{ margin: '10px' }}>{handleIconInformation()}{item}</InfoWrapper>
+          {!!idx && idx + 1 === content.length && (
+            <InfoWrapper style={{ margin: '10px' }} type='error'>
+              {handleIconInformation('error')}
+              {errorName}
+            </InfoWrapper>)}
+        </ContentCell>
+      </ContentRow >
+    ))
+  )
+}
 
 const OtherHeadings = ({ headings }) => {
   let previous = ''
@@ -107,8 +140,9 @@ const OtherHeadings = ({ headings }) => {
             <Content>{same ? null : item.tag}</Content>
           </TagCell>
           <ContentCell>
-            {content && (<Content>{content}</Content>)}
-            {!content && (<InfoWrapper type='warning'>{handleIconInformation('warning')}blablablabla</InfoWrapper>)}
+            {/* {content && (<Content>{content}</Content>)} */}
+            {content && (<InfoWrapper style={{ margin: '10px' }}>{handleIconInformation()}{content}</InfoWrapper>)}
+            {!content && (<InfoWrapper style={{ margin: '10px' }} type='warning'>{handleIconInformation('warning')}blablablabla</InfoWrapper>)}
           </ContentCell>
         </ContentRow >
       </>
@@ -120,6 +154,7 @@ const OtherHeadings = ({ headings }) => {
 }
 
 export const Headings = ({ h1, headings }) => {
+  console.log(">>>>", h1)
   const treatedHeadings = RemoveBrackets(headings)
   return (
     <div>
@@ -128,15 +163,14 @@ export const Headings = ({ h1, headings }) => {
       <DefinitionWrapper>
         As tags de título....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor ligula ante, et eleifend lorem molestie quis. Nulla dictum rhoncus facilisis. Fusce auctor malesuada dolor vitae mollis. Nam dapibus est id purus vestibulum, vestibulum tristique nisi imperdiet.
       </DefinitionWrapper>
-      {/* <div style={{ border: '1px solid', borderRadius: '8px' }}> */}
-        <Table>
-          <TableHead>
-            <th style={{ width: '20%' }}>Tag</th>
-            <th>Conteúdo</th>
-          </TableHead>
-          <OtherHeadings headings={treatedHeadings} />
-        </Table>
-      {/* </div> */}
+      <Table>
+        <TableHead>
+          <th style={{ width: '20%' }}>Tag</th>
+          <th>Conteúdo</th>
+        </TableHead>
+        <H1 {...h1} />
+        <OtherHeadings headings={treatedHeadings} />
+      </Table>
     </div>
   )
 }
