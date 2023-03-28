@@ -52,6 +52,7 @@ export const InfoWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 8px 12px;
+  margin: 10px;
   border-radius: 6px;
   background-color: ${({type}) => handleColorInformation(type)};
   svg {

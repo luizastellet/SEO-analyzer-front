@@ -8,12 +8,11 @@ import { handleIconInformation } from '../utils/InformationContainerHandler'
 import styled from "styled-components";
 import { RemoveBrackets, Parser } from '../utils/formatting'
 
-const Table = styled.table`
+export const Table = styled.table`
     width: 100%;
     text-align: center;
     overflow:hidden;
     background-color: #003060;
-    /* border: solid #003060 1px; */
     -webkit-border-radius: 8px;
        -moz-border-radius: 8px;
             border-radius: 8px;
@@ -23,7 +22,6 @@ const Table = styled.table`
   td, tr:not(:first-child) {
     background-color: #fff;
     vertical-align: middle;
-
   }
   
   tr { 
@@ -45,12 +43,13 @@ const Table = styled.table`
   }
 
 `
-const TableHead = styled.tr`
+export const TableHead = styled.tr`
   background-color: #003060;
   font-size: 18px;
   color: #fff;
   border: 1px solid #003060;
   border-radius: 8px;
+  width: 100%;
   
   th {
     padding: 8px 0;
@@ -66,24 +65,23 @@ const TableHead = styled.tr`
     border-right: none;
   }
 `
-const ContentRow = styled.tr`
+export const ContentRow = styled.tr`
   border-top: ${props => props.last ? '1px solid #003060' : ''};
-
 
 `
 
-const TagCell = styled.td`
+export const TagCell = styled.td`
   p { text-align: center; }
   
   `
 
-const Content = styled.p`
+export const Content = styled.p`
   color: #4A4A4A;
   font-size: 16px;
   text-align: justify;
   padding: 10px;
   `
-const ContentCell = styled.td`
+export const ContentCell = styled.td`
   text-align: justify;
   margin-bottom: 10px;
 `
@@ -109,9 +107,9 @@ const H1 = ({ tag, content, errorName }) => {
           <Content>{idx === 0 ? tag : ''}</Content>
         </TagCell>
         <ContentCell>
-          <InfoWrapper style={{ margin: '10px' }}>{handleIconInformation()}{item}</InfoWrapper>
+          <InfoWrapper>{handleIconInformation()}{item}</InfoWrapper>
           {!!idx && idx + 1 === content.length && (
-            <InfoWrapper style={{ margin: '10px' }} type='error'>
+            <InfoWrapper type='error'>
               {handleIconInformation('error')}
               {errorName}
             </InfoWrapper>)}
@@ -140,7 +138,6 @@ const OtherHeadings = ({ headings }) => {
             <Content>{same ? null : item.tag}</Content>
           </TagCell>
           <ContentCell>
-            {/* {content && (<Content>{content}</Content>)} */}
             {content && (<InfoWrapper style={{ margin: '10px' }}>{handleIconInformation()}{content}</InfoWrapper>)}
             {!content && (<InfoWrapper style={{ margin: '10px' }} type='warning'>{handleIconInformation('warning')}blablablabla</InfoWrapper>)}
           </ContentCell>
@@ -154,7 +151,6 @@ const OtherHeadings = ({ headings }) => {
 }
 
 export const Headings = ({ h1, headings }) => {
-  console.log(">>>>", h1)
   const treatedHeadings = RemoveBrackets(headings)
   return (
     <div>
