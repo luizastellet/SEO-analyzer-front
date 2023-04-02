@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Headings } from "../components/Headings";
 import { Images } from "../components/Images";
+import { Description } from "../components/Description";
 import Title from "../components/Title";
 
 const Container = styled.div`
@@ -11,10 +12,11 @@ const Container = styled.div`
   flex-direction: column;
   gap: 56px;
 `
-const Result = ({ title, headings, images }) => {
+const Result = ({ title, headings, images, description }) => {
   return (
     <Container>
       <Title data={title} />
+      <Description data={description}/>
       <Headings {...headings} />
       <Images images={images}/>
     </Container>
