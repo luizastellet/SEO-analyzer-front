@@ -90,6 +90,7 @@ const TableElements = ({ images }) => {
 }
 
 export const Images = ({ images }) => {
+  const isArrayEmpty = images.length === 1 && images[0].type === 'error'
   return (
     <div>
       <TitleWrapper>Imagens</TitleWrapper>
@@ -97,6 +98,13 @@ export const Images = ({ images }) => {
       <DefinitionWrapper>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor ligula ante, et eleifend lorem molestie quis. Nulla dictum rhoncus facilisis.
       </DefinitionWrapper>
+      {isArrayEmpty && (
+        <InfoWrapper style={{marginLeft: '0px'}} type='error'>
+          {handleIconInformation('error')}
+          {images[0].errorName}
+        </InfoWrapper>
+      )}
+      {!isArrayEmpty && (
       <Table>
         <TableHead>
           <th style={{maxWidth: '30%'}}>src</th>
@@ -104,6 +112,7 @@ export const Images = ({ images }) => {
         </TableHead>
         <TableElements images={images} />
       </Table>
+      )}
     </div>
   )
 }
