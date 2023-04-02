@@ -20,7 +20,7 @@ export const Description = ({ data }) => {
       <DefinitionContainer>
         <h4>Definição</h4>
         <DefinitionWrapper>
-          A tag de descrição, deifinida:<Tag>{`<meta name="description">`}</Tag> fornece uma breve descrição da temática de uma página. Seu conteúdo é apresentado em forma de link nos resultados de mecanismos de busca. 
+          A tag de descrição, definida:<Tag>{`<meta name="description">`}</Tag> fornece uma breve descrição da temática de uma página. Seu conteúdo é apresentado em forma de link nos resultados de mecanismos de busca. 
         </DefinitionWrapper>
       </DefinitionContainer>
           <InfoContainer>
