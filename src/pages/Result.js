@@ -5,6 +5,7 @@ import { Images } from "../components/Images";
 import { Description } from "../components/Description";
 import Title from "../components/Title";
 import { Keywords } from "../components/Keywords";
+import { SemanticTags } from "../components/SemanticTags";
 
 const Container = styled.div`
   width: 100%;
@@ -13,9 +14,10 @@ const Container = styled.div`
   flex-direction: column;
   gap: 56px;
 `
-const Result = ({ title, headings, images, description, keywords }) => {
+const Result = ({ title, headings, images, description, keywords, semanticTags }) => {
   return (
     <Container>
+      <SemanticTags data={semanticTags} />
       <Title data={title} />
       <Description data={description}/>
       <Keywords data={keywords} />
