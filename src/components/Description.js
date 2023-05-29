@@ -1,5 +1,4 @@
 import React from "react";
-import styled from 'styled-components'
 import { handleIconInformation } from "../utils/InformationContainerHandler";
 import {
   TitleWrapper,

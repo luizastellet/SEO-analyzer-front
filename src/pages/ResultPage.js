@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 const Result = React.lazy(() => import("./Result"))
 
-const endpoint = 'http://localhost:8000/'
+const endpoint = 'http://localhost:8000'
 
 const Background = styled.div`
   width: 100%;
@@ -120,12 +120,12 @@ const ResultPage = () => {
   const [data, setData] = useState({})
 
   useEffect(() => {
-    axios.get(`${endpoint}page`)
+    axios.get(`${endpoint}/page`)
       .then(res => setData(res.data))
   }, [])
 
   useEffect(() => {
-    axios.get(`${endpoint}url`)
+    axios.get(`${endpoint}/url`)
       .then(res => setURL(res.data.value))
   }, [])
 
