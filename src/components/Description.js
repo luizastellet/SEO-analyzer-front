@@ -9,7 +9,7 @@ import {
   InfoContainer,
   Tag,
 } from "./CommonStyledComponets";
-import { DataIcon } from "./Icons";
+import { CheckIcon } from "./Icons";
 
 export const Description = ({ data }) => {
   return (
@@ -19,13 +19,13 @@ export const Description = ({ data }) => {
       <DefinitionContainer>
         <h4>Definição</h4>
         <DefinitionWrapper>
-          A tag de descrição, definida:<Tag>{`<meta name="description">`}</Tag> fornece uma breve descrição da temática de uma página. Seu conteúdo é apresentado em forma de link nos resultados de mecanismos de busca. 
+         A descrição, definida pela tag: <Tag>{` <meta name="description">`}</Tag> fornece uma breve descrição da temática de uma página. Seu conteúdo é apresentado nos resultados trazidos pelas SERPs. 
         </DefinitionWrapper>
       </DefinitionContainer>
           <InfoContainer>
-            <h4>Resultado</h4>
+          <h4 style={{marginLeft: '10px'}}>Resultado</h4>
            {!!data.content && (
-             <InfoWrapper><DataIcon/>{data.content}</InfoWrapper>
+             <InfoWrapper type={data.type}><CheckIcon/>{data.content}</InfoWrapper>
            )}
         {data.errorName && (
           <InfoWrapper type={data.type}>{handleIconInformation(data.type)}{data.errorName}</InfoWrapper>

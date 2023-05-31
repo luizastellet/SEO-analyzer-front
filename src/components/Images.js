@@ -5,7 +5,7 @@ import {
   InfoWrapper,
 } from "./CommonStyledComponets";
 import styled from "styled-components";
-import { Table, TableHead, TagCell, Content, ContentCell } from "./Headings";
+import { Table, TableHead, ContentCell } from "./Headings";
 import { handleIconInformation } from "../utils/InformationContainerHandler"; 
 
 
@@ -79,10 +79,16 @@ const TableElements = ({ images }) => {
           </button>
         </URLCell>
         <ContentCell style={{width: '500px'}}>
-          {item.content}
-          {!!item.errorName && (<InfoWrapper type='error'>
-                {handleIconInformation('error')}
-                {item.errorName}</InfoWrapper>)}
+          {!!item.content && (
+          <InfoWrapper type={item.type}>
+                {handleIconInformation(item.type)}
+                {item.content}
+          </InfoWrapper>)}
+          {!!item.infoText && (
+          <InfoWrapper type={item.type}>
+                {handleIconInformation(item.type)}
+                {item.infoText}
+          </InfoWrapper>)}
         </ContentCell>
       </ContentRow>
     ))
@@ -93,15 +99,16 @@ export const Images = ({ images }) => {
   const isArrayEmpty = images.length === 1 && images[0].type === 'error'
   return (
     <div>
-      <TitleWrapper>Imagens</TitleWrapper>
+      <TitleWrapper>Texto Alternativo em Imagens</TitleWrapper>
       <h4>Definição</h4>
       <DefinitionWrapper>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor ligula ante, et eleifend lorem molestie quis. Nulla dictum rhoncus facilisis.
+      Crawlers não possuem a habilidade de interpretar arquivos de mídia, como imagens e vídeos, por isso fazem uso do atributo de texto alternativo pois, desta forma, conseguem compreender o conteúdo da mídia presente na página e indexa-lá.
       </DefinitionWrapper>
+      <h4 style={{fontWeight: '500', marginTop: '20px', marginBottom: '10px'}}>Resultado</h4>
       {isArrayEmpty && (
         <InfoWrapper style={{marginLeft: '0px'}} type='error'>
           {handleIconInformation('error')}
-          {images[0].errorName}
+          {images[0].infoText}
         </InfoWrapper>
       )}
       {!isArrayEmpty && (

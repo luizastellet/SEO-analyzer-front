@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   TitleWrapper,
   DefinitionWrapper,
@@ -9,21 +9,21 @@ import { Table, TableHead } from "./Headings";
 import { handleIconInformation } from "../utils/InformationContainerHandler";
 
 const Cell = styled.p`
-  margin-bottom: 10px;
   color: #4A4A4A;
   font-size: 16px;
+  margin: 18px 0;
 `
 
 export const Keywords = ({ data }) => {
   const isArrayEmpty = data.length === 1 && !data.content
-
   return (
     <div>
-      <TitleWrapper>Palavras-chave</TitleWrapper>
-      <h4>Definição</h4>
+      <TitleWrapper>Densidade de Palavras-chaves</TitleWrapper>
+      <h4 style={{fontWeight: '500'}}>Definição</h4>
       <DefinitionWrapper>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor ligula ante, et eleifend lorem molestie quis. Nulla dictum rhoncus facilisis.
+      Quantidade de vezes que uma palavra chave aparece em uma página se comparada ao número total de palavras existentes. O valor da densidade deve estar entre 2% e 8%.
       </DefinitionWrapper>
+      <h4 style={{fontWeight: '500', marginTop: '20px', marginBottom: '10px'}}>Resultado</h4>
       {isArrayEmpty && (
         <InfoWrapper style={{ marginLeft: '0px' }} type='error'>
           {handleIconInformation('error')}
@@ -39,10 +39,15 @@ export const Keywords = ({ data }) => {
             <th style={{ width: '33%' }}>Densidade</th>
           </TableHead>
           {data.map(item => (
-            <tr>
+            <tr style={{borderBottom: '1px solid #003060'}}>
               <td><Cell>{item.keyword}</Cell></td>
               <td><Cell>{item.count}</Cell></td>
-              <td><Cell>{item.density}</Cell></td>
+              <td>
+                <div  style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  {handleIconInformation(item.type)}
+                  <Cell>{item.density}</Cell>
+                  </div>
+                </td>
             </tr>
           ))}
         </Table>

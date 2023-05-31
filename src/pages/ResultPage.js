@@ -119,6 +119,10 @@ const ResultPage = () => {
   const [URL, setURL] = useState("")
   const [data, setData] = useState({})
 
+  function isEmpty(obj) {
+    return Object.entries(obj).length === 0;
+  }
+
   useEffect(() => {
     axios.get(`${endpoint}/page`)
       .then(res => setData(res.data))
@@ -129,6 +133,7 @@ const ResultPage = () => {
       .then(res => setURL(res.data.value))
   }, [])
 
+  console.log(data)
   return (
     <Background>
       <BGImage />
@@ -140,7 +145,7 @@ const ResultPage = () => {
           </TopWrapper>
           <URLWrapper> Exibindo resultados para: <a target="blank" href={URL}> {URL}</a></URLWrapper>
         </Header>
-        {!!data.title && (
+        {!isEmpty(data) && (
           <Suspense fallback={<p>Loading...</p>}>
             <Result {...data} />
           </Suspense>

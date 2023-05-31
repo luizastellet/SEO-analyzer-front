@@ -85,7 +85,7 @@ export const ContentCell = styled.td`
   text-align: justify;
   margin-bottom: 10px;
 `
-const H1 = ({ tag, content, errorName }) => {
+const H1 = ({ tag, content, infoText }) => {
 
   if (!content) {
     return (
@@ -94,7 +94,7 @@ const H1 = ({ tag, content, errorName }) => {
           <Content>{tag}</Content>
         </TagCell>
         <ContentCell>
-          <InfoWrapper style={{ margin: '10px' }} type='error'>{handleIconInformation('error')}{errorName}</InfoWrapper>
+          <InfoWrapper style={{ margin: '10px 25px' }} type='error'>{handleIconInformation('error')}{infoText}</InfoWrapper>
         </ContentCell>
       </ContentRow >
     )
@@ -111,7 +111,7 @@ const H1 = ({ tag, content, errorName }) => {
           {!!idx && idx + 1 === content.length && (
             <InfoWrapper type='error'>
               {handleIconInformation('error')}
-              {errorName}
+              {infoText}
             </InfoWrapper>)}
         </ContentCell>
       </ContentRow >
@@ -138,8 +138,8 @@ const OtherHeadings = ({ headings }) => {
             <Content>{same ? null : item.tag}</Content>
           </TagCell>
           <ContentCell>
-            {content && (<InfoWrapper style={{ margin: '10px' }}>{handleIconInformation()}{content}</InfoWrapper>)}
-            {!content && (<InfoWrapper style={{ margin: '10px' }} type='warning'>{handleIconInformation('warning')}blablablabla</InfoWrapper>)}
+            {content && (<InfoWrapper type={item.type} style={{ margin: '10px 25px' }}>{handleIconInformation(item.type)}{content}</InfoWrapper>)}
+            {!content && (<InfoWrapper style={{ margin: '10px 25px' }} type='warning'>{handleIconInformation('warning')}{item.infoText}</InfoWrapper>)}
           </ContentCell>
         </ContentRow >
       </>
@@ -154,11 +154,12 @@ export const Headings = ({ h1, headings }) => {
   const treatedHeadings = RemoveBrackets(headings)
   return (
     <div>
-      <TitleWrapper>Títulos de Seção </TitleWrapper>
-      <h4>Definição</h4>
+      <TitleWrapper>Títulos e Subtítulos </TitleWrapper>
+      <h4 style={{fontWeight: '500'}}>Definição</h4>
       <DefinitionWrapper>
-        As tags de título....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tempor ligula ante, et eleifend lorem molestie quis. Nulla dictum rhoncus facilisis. Fusce auctor malesuada dolor vitae mollis. Nam dapibus est id purus vestibulum, vestibulum tristique nisi imperdiet.
+      {`As tags de título e subtítulo informam os assuntos tratados na página por ordem de relevância, indo do <h1> até <h6>.`} 
       </DefinitionWrapper>
+      <h4 style={{fontWeight: '500', marginTop: '20px', marginBottom: '10px'}}>Resultado</h4>
       <Table>
         <TableHead>
           <th style={{ width: '20%' }}>Tag</th>

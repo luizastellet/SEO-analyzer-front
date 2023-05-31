@@ -27,7 +27,7 @@ export const DefinitionContainer = styled.div`
 export const DefinitionWrapper = styled.p`
   color: #4A4A4A;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin: 10px 0;
   text-align: justify; 
 `
 export const InfoContainer = styled.div`
@@ -58,6 +58,6 @@ export const InfoWrapper = styled.div`
   svg {
       min-width: 25px;
       height: 25px;
-      margin-right: 8px;
+      /* margin-right: 8px; */
     }
 `
